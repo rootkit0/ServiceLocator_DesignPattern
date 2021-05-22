@@ -14,8 +14,8 @@ import servicelocator2.LocatorError;
 import servicelocator2.ServiceLocator;
 import servicelocator2.SimpleServiceLocator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class SimpleServiceLocatorTest {
     ServiceLocator sl;
@@ -79,10 +79,32 @@ public class SimpleServiceLocatorTest {
         exception = assertThrows(LocatorError.class, () -> {
             sl.setConstant(int.class, 1);
         });
+        assertEquals(expectedMessage, exception.getMessage());
     }
 
     @Test
     public void getObject() throws LocatorError {
+        // Executa el mètode correctament
+        /*assertDoesNotThrow(() -> {
+            sl.getObject(InterfaceA.class);
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject(InterfaceB.class);
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject(InterfaceC.class);
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject(InterfaceD.class);
+        });*/
+        assertDoesNotThrow(() -> {
+            sl.getObject(String.class);
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject(int.class);
+        });
+
+        // Retorna el resultat correcte
         assertEquals("string", sl.getObject(String.class));
         assertEquals(1, sl.getObject(int.class));
     }

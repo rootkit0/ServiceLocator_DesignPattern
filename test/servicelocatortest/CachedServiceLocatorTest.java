@@ -84,6 +84,7 @@ public class CachedServiceLocatorTest {
         exception = assertThrows(LocatorError.class, () -> {
             sl.setConstant("I", 1);
         });
+        assertEquals(expectedMessage, exception.getMessage());
 
         // Executa el mètode correctament
         assertDoesNotThrow(() -> {
@@ -97,6 +98,39 @@ public class CachedServiceLocatorTest {
 
     @Test
     public void getObject() throws LocatorError {
+        String expectedMessage = "No hi ha cap objecte enregistrat amb aquest nom!";
+
+        // Executa el mètode correctament
+        assertDoesNotThrow(() -> {
+            sl.getObject("A");
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject("B");
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject("C");
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject("D");
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject("S");
+        });
+        assertDoesNotThrow(() -> {
+            sl.getObject("I");
+        });
+
+        // Llença excepció
+        Exception exception = assertThrows(LocatorError.class, () -> {
+            sl.getObject("E");
+        });
+        assertEquals(expectedMessage, exception.getMessage());
+
+        exception = assertThrows(LocatorError.class, () -> {
+            sl.getObject("F");
+        });
+
+        // Retorna el resultat correcte
         assertEquals("string", sl.getObject("S"));
         assertEquals(1, sl.getObject("I"));
     }
