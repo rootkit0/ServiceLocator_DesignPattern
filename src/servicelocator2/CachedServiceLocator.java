@@ -5,6 +5,12 @@ import java.util.HashMap;
 public class CachedServiceLocator implements ServiceLocator {
     private HashMap<Class, Factory> factories;
     private HashMap<Class, Object> constants;
+
+    public CachedServiceLocator() {
+        factories = new HashMap<>();
+        constants = new HashMap<>();
+    }
+
     @Override
     public <T> void setService(Class<T> klass, Factory<T> factory) throws LocatorError {
         if(factories.containsKey(klass)) {
