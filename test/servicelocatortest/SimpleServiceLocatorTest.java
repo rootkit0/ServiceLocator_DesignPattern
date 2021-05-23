@@ -37,7 +37,7 @@ public class SimpleServiceLocatorTest {
     }
 
     @Test
-    public void setService(){
+    public void setServiceTest(){
         String expectedMessage = "Ja hi ha una factoria enregistrada amb aquest nom!";
 
         // Llença excepció
@@ -83,7 +83,7 @@ public class SimpleServiceLocatorTest {
     }
 
     @Test
-    public void setConstant(){
+    public void setConstantTest(){
         String expectedMessage = "Ja hi ha un objecte enregistrat amb aquest nom!";
 
         // Llença excepció
@@ -128,7 +128,7 @@ public class SimpleServiceLocatorTest {
     }
 
     @Test
-    public void getObject() throws LocatorError {
+    public void getObjectTest() throws LocatorError {
         String expectedMessage = "No hi ha cap objecte enregistrat amb aquest nom!";
 
         // Executa el mètode correctament

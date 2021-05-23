@@ -41,7 +41,7 @@ public class CachedServiceLocatorTest {
     }
 
     @Test
-    public void setService(){
+    public void setServiceTest(){
         String expectedMessage = "Ja hi ha una factoria enregistrada amb aquest nom!";
 
         // Llença excepció
@@ -67,7 +67,7 @@ public class CachedServiceLocatorTest {
     }
 
     @Test
-    public void setConstant(){
+    public void setConstantTest(){
         String expectedMessage = "Ja hi ha un objecte enregistrat amb aquest nom!";
 
         // Llença excepció
@@ -83,7 +83,7 @@ public class CachedServiceLocatorTest {
     }
 
     @Test
-    public void getObject() throws LocatorError {
+    public void getObjectTest() throws LocatorError {
         // Executa el mètode correctament
         assertDoesNotThrow(() -> {
             sl.getObject(InterfaceA.class);
