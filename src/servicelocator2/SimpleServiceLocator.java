@@ -29,7 +29,6 @@ public class SimpleServiceLocator implements ServiceLocator {
 
     @Override
     public <T> T getObject(Class<T> klass) throws LocatorError {
-        System.out.println(klass.toString());
         if(constants.containsKey(klass)) {
             return (T) constants.get(klass);
         }
