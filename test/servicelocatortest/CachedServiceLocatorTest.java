@@ -60,6 +60,16 @@ public class CachedServiceLocatorTest {
         });
         assertEquals(expectedMessage, exception.getMessage());
 
+        exception = assertThrows(LocatorError.class, () -> {
+            sl.setService("S", factoryA);
+        });
+        assertEquals(expectedMessage, exception.getMessage());
+
+        exception = assertThrows(LocatorError.class, () -> {
+            sl.setService("I", factoryA);
+        });
+        assertEquals(expectedMessage, exception.getMessage());
+
 
         // Executa el mètode correctament
         assertDoesNotThrow(() -> {
@@ -77,7 +87,27 @@ public class CachedServiceLocatorTest {
 
         // Llença excepció
         Exception exception = assertThrows(LocatorError.class, () -> {
-            sl.setConstant("S", "A");
+            sl.setConstant("A", 1);
+        });
+        assertEquals(expectedMessage, exception.getMessage());
+
+        exception = assertThrows(LocatorError.class, () -> {
+            sl.setConstant("B", 1);
+        });
+        assertEquals(expectedMessage, exception.getMessage());
+
+        exception = assertThrows(LocatorError.class, () -> {
+            sl.setConstant("C", 1);
+        });
+        assertEquals(expectedMessage, exception.getMessage());
+
+        exception = assertThrows(LocatorError.class, () -> {
+            sl.setConstant("D", 1);
+        });
+        assertEquals(expectedMessage, exception.getMessage());
+
+        exception = assertThrows(LocatorError.class, () -> {
+            sl.setConstant("S", 1);
         });
         assertEquals(expectedMessage, exception.getMessage());
 
@@ -88,11 +118,11 @@ public class CachedServiceLocatorTest {
 
         // Executa el mètode correctament
         assertDoesNotThrow(() -> {
-            sl.setConstant("E", "A");
+            sl.setConstant("E", 1);
         });
 
         assertDoesNotThrow(() -> {
-            sl.setConstant("F", 2);
+            sl.setConstant("F", 1);
         });
     }
 

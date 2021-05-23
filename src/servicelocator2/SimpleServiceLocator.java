@@ -13,7 +13,7 @@ public class SimpleServiceLocator implements ServiceLocator {
 
     @Override
     public <T> void setService(Class<T> klass, Factory<T> factory) throws LocatorError {
-        if(factories.containsKey(klass)) {
+        if(factories.containsKey(klass) || constants.containsKey(klass)) {
             throw new LocatorError("Ja hi ha una factoria enregistrada amb aquest nom!");
         }
         factories.put(klass, factory);
@@ -21,7 +21,7 @@ public class SimpleServiceLocator implements ServiceLocator {
 
     @Override
     public <T> void setConstant(Class<T> klass, T value) throws LocatorError {
-        if(constants.containsKey(klass)) {
+        if(factories.containsKey(klass) || constants.containsKey(klass)) {
             throw new LocatorError("Ja hi ha un objecte enregistrat amb aquest nom!");
         }
         constants.put(klass, value);
@@ -29,6 +29,7 @@ public class SimpleServiceLocator implements ServiceLocator {
 
     @Override
     public <T> T getObject(Class<T> klass) throws LocatorError {
+        System.out.println(klass.toString());
         if(constants.containsKey(klass)) {
             return (T) constants.get(klass);
         }

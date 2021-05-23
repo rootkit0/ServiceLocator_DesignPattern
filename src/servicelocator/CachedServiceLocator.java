@@ -13,7 +13,7 @@ public class CachedServiceLocator implements ServiceLocator {
 
     @Override
     public void setService(String name, Factory factory) throws LocatorError {
-        if(factories.containsKey(name)) {
+        if(factories.containsKey(name) || constants.containsKey(name)) {
             throw new LocatorError("Ja hi ha una factoria enregistrada amb aquest nom!");
         }
         factories.put(name, factory);
@@ -21,7 +21,7 @@ public class CachedServiceLocator implements ServiceLocator {
 
     @Override
     public void setConstant(String name, Object value) throws LocatorError {
-        if(constants.containsKey(name)) {
+        if(factories.containsKey(name) || constants.containsKey(name)) {
             throw new LocatorError("Ja hi ha un objecte enregistrat amb aquest nom!");
         }
         constants.put(name, value);

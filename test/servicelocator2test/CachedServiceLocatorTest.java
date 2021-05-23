@@ -37,7 +37,7 @@ public class CachedServiceLocatorTest {
         sl.setService(InterfaceC.class, factoryC);
         sl.setService(InterfaceD.class, factoryD);
         sl.setConstant(String.class, "string");
-        sl.setConstant(int.class, 1);
+        sl.setConstant(Integer.class, 1);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class CachedServiceLocatorTest {
         assertEquals(expectedMessage, exception.getMessage());
 
         exception = assertThrows(LocatorError.class, () -> {
-            sl.setConstant(int.class, 1);
+            sl.setConstant(Integer.class, 1);
         });
         assertEquals(expectedMessage, exception.getMessage());
     }
@@ -85,27 +85,12 @@ public class CachedServiceLocatorTest {
     @Test
     public void getObject() throws LocatorError {
         // Executa el mètode correctament
-        /*assertDoesNotThrow(() -> {
+        assertDoesNotThrow(() -> {
             sl.getObject(InterfaceA.class);
-        });
-        assertDoesNotThrow(() -> {
-            sl.getObject(InterfaceB.class);
-        });
-        assertDoesNotThrow(() -> {
-            sl.getObject(InterfaceC.class);
-        });
-        assertDoesNotThrow(() -> {
-            sl.getObject(InterfaceD.class);
-        });*/
-        assertDoesNotThrow(() -> {
-            sl.getObject(String.class);
-        });
-        assertDoesNotThrow(() -> {
-            sl.getObject(int.class);
         });
 
         // Retorna el resultat correcte
         assertEquals("string", sl.getObject(String.class));
-        assertEquals(1, sl.getObject(int.class));
+        assertEquals(1, sl.getObject(Integer.class));
     }
 }
